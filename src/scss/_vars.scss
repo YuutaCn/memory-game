@@ -1,0 +1,20 @@
+// если вы хотите использовать sass-переменные - удалите root
+// colors
+:root {
+  // base
+  --font-family: "Open Sans", sans-serif;
+  --content-width: 1170px;
+  --container-offset: 15px;
+  --container-width: calc(var(--content-width) + (var(--container-offset) * 2));
+
+  // colors
+  --white-color: #fff;
+  --black-color: #202020;
+  --light-color: #4EA8A8;
+  --default-color: #5500ff;
+  --dark-color: #5500ff;
+  --second-color: #853E03;
+  --second-light-color: #C27534;
+
+  --default-cubic: cubic-bezier(.48,.38,.58,.91);
+}

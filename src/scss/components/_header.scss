@@ -1,0 +1,32 @@
+.header {
+  background: var(--dark-color);
+  width: 100%;
+  height: 10vh;
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    width: 100%;
+    height: 100%;
+    align-items: center;
+  }
+
+  &__h1 {
+    grid-column: 1/4;
+    color: var(--white-color);
+    font-family: 'Xdevilix';
+    font-size: 36px;
+
+    & a {
+      color: var(--white-color);
+    }
+  }
+
+  &__timer {
+    grid-column: 12/13;
+    grid-row: 1/1;
+    color: var(--white-color);
+    font-family: 'Xdevilix';
+    font-size: 36px;
+  }
+}
