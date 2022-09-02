@@ -3,7 +3,6 @@
 
 // Определение операционной системы на мобильных
 import { mobileCheck } from "./functions/mobile-check";
-console.log(mobileCheck())
 
 // Определение ширины экрана
 // import { isMobile, isTablet, isDesktop } from './functions/check-viewport';
@@ -77,10 +76,29 @@ console.log(mobileCheck())
 // });
 
 // import { validateForms } from './functions/validate-forms';
-// const rules1 = [...];
+// const rulesSettingForm = [
+//   {
+//     ruleSelector: '.form__input-number',
+//     rules: [
+//       {
+//         rule: 'required',
+//         value: true,
+//         errorMessage: 'Enter number'
+//       },
+//       {
+//         rule: 'number',
+//         value: true,
+//         errorMessage: 'Invalid format'
+//       },
+
+//     ]
+//   },
+// ];
 
 // const afterForm = () => {
 //   console.log('Произошла отправка, тут можно писать любые действия');
 // };
-
-// validateForms('.form-1', rules1, afterForm);
+// const afterAboutForm = () => {
+//   console.log('ok')
+// };
+// validateForms('.setting__form', rulesSettingForm, afterAboutForm);

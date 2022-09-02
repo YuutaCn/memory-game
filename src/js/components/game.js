@@ -1,17 +1,45 @@
 import Card from './card'
 
-let cardsCount = 8,
+let cardsCount = 0,
   cardsNumberArray = [],
   cardsArray = [],
   firstCard = null,
   secondCard = null,
-  timerLenght = null
+  timerLenght = 1,
+  difficultGame = 1
 
 let stopGame = document.querySelector('.stop-button');
+let goButton = document.querySelector('.main__go-button');
+let settingMenu = document.querySelector('.game-setting');
+let startGame = document.querySelector('.form__btn');
+
+
+goButton.addEventListener('click', () => {
+  settingMenu.classList.remove('hidden')
+});
+
+startGame.addEventListener('click', () => {
+  if (Number(document.querySelector('.form__input-number').value) <= 14 && Number(document.querySelector('.form__input-number').value) >= 2) {
+    newGame(document.getElementById('game-zone'), cardsCount);
+    document.querySelector('.game-zone').classList.remove('hidden');
+    removeSetting();
+  }
+});
 
 function newGame(container, cardsCount) {
   let timer = document.getElementById('timer');
-  timerLenght = 40;
+  cardsCount = Number(document.querySelector('.form__input-number').value);
+  difficultGame = Number(document.querySelector('.form__select').value);
+
+  if (difficultGame == 1) {
+    timerLenght = cardsCount * 6
+  }
+  if (difficultGame == 2) {
+    timerLenght = cardsCount * 4
+  }
+  if (difficultGame == 3) {
+    timerLenght = cardsCount * 2
+  }
 
   let timerInterval = setInterval(() => {
     timerLenght--;
@@ -29,15 +57,27 @@ function newGame(container, cardsCount) {
 
     timer.innerHTML = `${timerMinets}:${timerSeconds}`;
 
-    if (timerLenght === 20) {
+    if (timerLenght <= 20) {
       timer.classList.add('low-timer');
     };
 
     if (timerLenght === 0) {
+      let classMatcher = /(?:^|\s)card(?:\s|$)/;
+      let els = document.getElementsByTagName('*');
+
+      for (let i = els.length; i--;) {
+        if (classMatcher.test(els[i].className)) {
+          els[i].parentNode.removeChild(els[i]);
+        };
+      };
+
+      cardsNumberArray = []
+      cardsArray = []
       clearInterval(timerInterval);
       timer.classList.remove('low-timer');
       timer.innerHTML = 'REPEAT?';
       timer.style.transition = 'transform 5s var(--default-cubic)';
+      alert('YOU LOSE!~')
     };
   }, 1000);
 
@@ -87,6 +127,7 @@ function newGame(container, cardsCount) {
       timer.innerHTML = 'REPEAT?'
       timer.style.transition = 'transform 5s var(--default-cubic)'
       clearInterval(timerInterval)
+      alert('You WIN')
     }
   }
 }
@@ -101,6 +142,9 @@ function removeGame() {
     };
   };
 
+  cardsNumberArray = []
+  cardsArray = []
+
   timer.classList.remove('low-timer');
   timer.innerHTML = 'REPEAT?';
   timer.style.transition = 'transform 5s var(--default-cubic)';
@@ -109,10 +153,15 @@ function removeGame() {
   document.querySelector('.game-zone').classList.add('hidden');
 }
 
-document.onkeydown = function(evt) {
+function removeSetting() {
+  document.querySelector('.game-setting').classList.add('hidden');
+}
+
+document.onkeydown = function (evt) {
   evt = evt || window.event;
   if (evt.keyCode == 27) {
-    removeGame()
+    removeGame();
+    removeSetting();
   }
 };
 
@@ -120,6 +169,13 @@ stopGame.addEventListener('click', () => {
   removeGame()
 });
 
-newGame(document.getElementById('game-zone'), cardsCount);
+document.addEventListener('click', e => {
+  if (e.target == document.querySelector('.game-zone') || e.target == document.querySelector('.game-setting')) {
+    removeGame()
+    removeSetting()
+  }
+});
+
+// newGame(document.getElementById('game-zone'), cardsCount);
 
 
