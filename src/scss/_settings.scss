@@ -36,6 +36,15 @@ textarea {
   min-height: 100%;
   font-size: 16px;
   overflow: hidden;
+  background-color: #0f0f0f;
+
+  @include small-tablet {
+    overflow: scroll;
+  }
+
+  @include mobile {
+    overflow: scroll;
+  }
 }
 
 img {

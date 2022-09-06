@@ -32,13 +32,13 @@ function newGame(container, cardsCount) {
   difficultGame = Number(document.querySelector('.form__select').value);
 
   if (difficultGame == 1) {
-    timerLenght = cardsCount * 6
+    timerLenght = cardsCount * 5
   }
   if (difficultGame == 2) {
-    timerLenght = cardsCount * 4
+    timerLenght = cardsCount * 3
   }
   if (difficultGame == 3) {
-    timerLenght = cardsCount * 2
+    timerLenght = cardsCount * 1.7
   }
 
   let timerInterval = setInterval(() => {
