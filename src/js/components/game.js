@@ -38,7 +38,7 @@ function newGame(container, cardsCount) {
     timerLenght = cardsCount * 3
   }
   if (difficultGame == 3) {
-    timerLenght = cardsCount * 1.7
+    timerLenght = Math.round(cardsCount * 1.7)
   }
 
   let timerInterval = setInterval(() => {
